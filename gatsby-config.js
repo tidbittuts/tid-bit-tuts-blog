@@ -50,7 +50,9 @@ module.exports = {
       options: {
         fonts: [
           `limelight`,
+          /* eslint-disable */
           `source sans pro\:300,400,400i,700` // you can also specify font weights and styles
+          /* eslint-enable */
         ]
       }
     },

@@ -26,12 +26,12 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         }
       }
     }
-  `).then(res => {
-    if (res.errors) {
-      return Promise.reject(res.errors);
+  `).then(resolve => {
+    if (resolve.errors) {
+      return Promise.reject(resolve.errors);
     }
 
-    res.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    resolve.data.allMarkdownRemark.edges.forEach(({ node }) => {
       createPage({
         path: node.frontmatter.path,
         component: postTemplate

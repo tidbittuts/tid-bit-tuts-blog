@@ -8,7 +8,7 @@ import './index.scss';
 const Header = () => (
   <div
     style={{
-      background: 'rebeccapurple',
+      backgroundColor: '#00B300',
       marginBottom: '1.45rem'
     }}
   >

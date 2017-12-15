@@ -1,5 +1,6 @@
 import React from 'react';
-import Helmet from 'gatsby-plugin-react-helmet';
+import PropTypes from 'prop-types';
+// import Helmet from 'gatsby-plugin-react-helmet';
 
 export default function Template({ data }) {
   const { markdownRemark: post } = data;
@@ -23,3 +24,7 @@ export const postQuery = graphql`
     }
   }
 `;
+
+Template.propTypes = {
+  data: PropTypes.object
+};
