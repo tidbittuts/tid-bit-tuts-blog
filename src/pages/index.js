@@ -10,7 +10,7 @@ const IndexPage = ({ data }) => (
 
     {data.allMarkdownRemark.edges.map(post => (
       <div className="index-item" key={post.node.id}>
-        <Link to={post.node.frontmatter.path}>
+        <Link to={post.node.fields.slug}>
           <h2>{post.node.frontmatter.title}</h2>
         </Link>
         <p>{post.node.excerpt}</p>
@@ -29,6 +29,9 @@ export const pageQuery = graphql`
       edges {
         node {
           id
+          fields {
+            slug
+          }
           excerpt(pruneLength: 250)
           frontmatter {
             title

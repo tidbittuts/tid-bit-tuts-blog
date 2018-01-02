@@ -26,8 +26,8 @@ export default function Template({ data }) {
 }
 
 export const postQuery = graphql`
-  query BlogPostByPath($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+  query BlogPostBySlug($slug: String!) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       timeToRead
       frontmatter {
