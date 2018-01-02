@@ -4,15 +4,23 @@ import PostTags from '../components/PostTags/PostTags';
 import Helmet from 'react-helmet';
 
 export default function Template({ data }) {
-  const post = data.markdownRemark;
-  const blog = post.frontmatter;
+  const postData = data.markdownRemark;
+  const post = postData.frontmatter;
   return (
     <div>
       <Helmet>
-        <title>{`${blog.title}`}</title>
+        <title>{`${post.title}`}</title>
       </Helmet>
-      <h1>{blog.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+
+      <h1>{post.title}</h1>
+
+      <p>{`Time to read: ${postData.timeToRead} minutes`}</p>
+
+      <div dangerouslySetInnerHTML={{ __html: postData.html }} />
+
+      <div className="post-meta">
+        <PostTags tags={post.tags} />
+      </div>
     </div>
   );
 }
@@ -21,9 +29,13 @@ export const postQuery = graphql`
   query BlogPostByPath($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
+      timeToRead
       frontmatter {
         path
         title
+        date
+        tags
+        category
       }
     }
   }
@@ -32,3 +44,7 @@ export const postQuery = graphql`
 Template.propTypes = {
   data: PropTypes.object
 };
+
+{
+  /* <SocialLinks postPath={slug} postNode={postNode} />; */
+}

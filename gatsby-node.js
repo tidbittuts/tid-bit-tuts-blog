@@ -11,7 +11,8 @@ const webpackLodashPlugin = require('lodash-webpack-plugin');
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators;
 
-  const postTemplate = path.resolve('src/templates/blog-post.js');
+  const postTemplate = path.resolve('src/templates/blog-post.jsx');
+  const tagTemplate = path.resolve('src/templates/tags.jsx');
 
   return graphql(`
     {
