@@ -1,3 +1,5 @@
+const config = require('./data/SiteConfig');
+
 module.exports = {
   siteMetadata: {
     title: `TidBitTuts`
@@ -7,8 +9,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `pages`,
-        path: `${__dirname}/src/`
+        name: `posts`,
+        path: `${__dirname}/content/posts`
       }
     },
     // Markdown Parsing

@@ -24,12 +24,12 @@ export const pageQuery = graphql`
   query IndexQuery {
     allMarkdownRemark(
       filter: { frontmatter: { draft: { eq: false } } }
-      sort: { fields: [frontmatter__date], order: ASC }
+      sort: { order: DESC, fields: [frontmatter___date] }
     ) {
       edges {
         node {
           id
-          excerpt
+          excerpt(pruneLength: 250)
           frontmatter {
             title
             path
