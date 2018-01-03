@@ -2,55 +2,46 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
+import logo from '../assets/logo.jpg';
 
-import './index.scss';
+import './index.sass';
+import gatsbyPluginCatchLinks from 'gatsby-plugin-catch-links';
+
+const Navbar = () => (
+  <nav className="navbar">
+    <div className="navigation-wrapper">
+      <Link to="/" className="brand">
+        <figure className="logo">
+          <img src={logo} alt="TidBitTuts logo" style={{ width: '88px' }} />
+        </figure>
+      </Link>
+
+      <div className="navigation">
+        <Link>Home</Link>
+        <Link>Blog</Link>
+        <Link>About</Link>
+      </div>
+    </div>
+  </nav>
+);
 
 const Header = () => (
-  <div
-    style={{
-      backgroundColor: '#00B300',
-      marginBottom: '1.45rem'
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem'
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none'
-          }}
-        >
-          TBT
-        </Link>
-      </h1>
-    </div>
-  </div>
+  <header>
+    <Helmet
+      title="TidBitTuts | Web Development Snippets"
+      meta={[
+        { name: 'description', content: 'A Web Development blog' },
+        { name: 'keywords', content: 'web development, programming, tidbittuts' }
+      ]}
+    />
+    <Navbar />
+  </header>
 );
 
 const TemplateWrapper = ({ children }) => (
   <div>
-    <Helmet
-      title="Gatsby Default Starter"
-      meta={[{ name: 'description', content: 'Sample' }, { name: 'keywords', content: 'sample, something' }]}
-    />
     <Header />
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '0px 1.0875rem 1.45rem',
-        paddingTop: 0
-      }}
-    >
-      {children()}
-    </div>
+    <div className="container">{children()}</div>
   </div>
 );
 
