@@ -52,15 +52,30 @@ const Footer = () => (
   </footer>
 );
 
-const TemplateWrapper = ({ children }) => (
-  <div>
-    <Header />
-    <Wrapper>
-      <div className="container">{children()}</div>
-    </Wrapper>
-    <Footer />
-  </div>
-);
+const TemplateWrapper = ({ children }) => {
+  const { nodes, page, prev, next, pages, total, limit } = children;
+  const PaginationLink = props => {
+    if (props.to && props.text) {
+      return <Link to={props.to} text={props.text} />;
+    }
+    return null;
+  };
+  return (
+    <div>
+      <Header />
+      <Wrapper>
+        <div className="container">{children()}</div>
+        <div className="previousPost">
+          <PaginationLink to={prev} text="Go to Previous Page" />
+        </div>
+        <div className="nextPost">
+          <PaginationLink to={next} text="Go to Next Page" />
+        </div>
+      </Wrapper>
+      <Footer />
+    </div>
+  );
+};
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func

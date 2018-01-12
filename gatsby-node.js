@@ -7,7 +7,7 @@
 const path = require('path');
 const _ = require('lodash');
 const webpackLodashPlugin = require('lodash-webpack-plugin');
-// const siteConfig = require('./data/SiteConfig');
+const siteConfig = require('./data/SiteConfig');
 const { createPaginationPages, createLinkedPages } = require('gatsby-pagination');
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
@@ -57,26 +57,20 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             categorySet.add(edge.node.frontmatter.category);
           }
 
-          // Creates Index page
           createPaginationPages({
-            createPage,
-            path: edge.node.fields.slug,
+            createPage: createPage,
             edges: result.data.allMarkdownRemark.edges,
+            component: postPage,
+            limit: 5
+          });
+
+          createPage({
+            path: edge.node.id,
             component: postPage,
             context: {
               slug: edge.node.fields.slug
             }
-
-            // limit: siteConfig.sitePaginationLimit
           });
-
-          // createPage({
-          //   path: edge.node.fields.slug,
-          //   component: postPage,
-          //   context: {
-          //     slug: edge.node.fields.slug
-          //   }
-          // });
         });
 
         const tagList = Array.from(tagSet);

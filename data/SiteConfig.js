@@ -8,6 +8,7 @@ module.exports = {
   siteDescription: 'A Tuts Site by Mox', // Website description used for RSS feeds/meta description tag.
   siteRss: '/rss.xml', // Path to the RSS file.
   siteFBAppID: '', // FB Application ID for using app insights
+  sitePaginationLimit: 10, // The max number of posts per page.
   googleAnalyticsID: '', // GA tracking ID.
   disqusShortname: '', // Disqus shortname.
   postDefaultCategoryID: 'Web Development', // Default category for posts.
