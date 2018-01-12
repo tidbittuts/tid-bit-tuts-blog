@@ -10,7 +10,7 @@ export default class TagTemplate extends React.Component {
     return (
       <div className="tag-container">
         <Helmet title={`Posts tagged as "${tag}" | ${config.siteTitle}`} />
-        <h1>`Posts tagged as "${tag}"</h1>
+        <h1>{`Posts tagged as "${tag}"`}</h1>
         <PostListing postEdges={postEdges} />
       </div>
     );
