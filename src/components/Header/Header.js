@@ -16,7 +16,7 @@ const HeaderContainer = styled.div`
   align-items: center;
 `
 
-const Header = data => (
+const Header = () => (
   <HeaderWrapper>
     <HeaderContainer>
       <Logo />

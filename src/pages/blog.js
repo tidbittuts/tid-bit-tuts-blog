@@ -1,8 +1,27 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import styled from 'styled-components'
 
 import Layout from '../layouts/index'
 import SEO from '../components/Seo/Seo'
+
+const AllTagsCatsNav = styled.nav`
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  li {
+    padding: 0.5rem;
+  }
+`
+const BlogExcerptWrapper = styled.article`
+  h2 a {
+    color: ${props => props.theme.color_brand_1};
+  }
+`
 
 const BlogPage = ({ data }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -15,26 +34,35 @@ const BlogPage = ({ data }) => {
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
       />
 
+      <AllTagsCatsNav>
+        <ul>
+          <li>
+            <Link to="/tags">Tags</Link>
+          </li>
+          <li>
+            <Link to="/categories">Categories</Link>
+          </li>
+        </ul>
+      </AllTagsCatsNav>
+
       {posts.map(({ node }) => {
         const { title } = node.fields
         return (
-          <div key={node.id}>
-            <h3
-              style={{
-                marginBottom: `1rem`,
-              }}
-            >
-              <Link style={{ boxShadow: `none` }} to={node.fields.postUrl}>
-                {title}
-              </Link>
-            </h3>
-            <small>{node.fields.date}</small>
-            <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-          </div>
+          <BlogExcerptWrapper key={node.id}>
+            <header>
+              <h2>
+                <Link to={node.fields.postUrl}>{title}</Link>
+              </h2>
+            </header>
+            <div className="entry-meta">
+              <small>{node.fields.date}</small>
+            </div>
+            <div className="entry-content">
+              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+            </div>
+          </BlogExcerptWrapper>
         )
       })}
-      <Link to="/tags">Tags</Link>
-      <Link to="/categories">Categories</Link>
     </Layout>
   )
 }

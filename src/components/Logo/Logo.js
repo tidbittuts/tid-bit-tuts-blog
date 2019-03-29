@@ -7,9 +7,6 @@ import logo from '../../images/gatsby-icon.png'
 const SiteBranding = styled.div`
   width: 100px;
   height: auto;
-  img {
-    margin-bottom: 0;
-  }
 `
 const Logo = () => (
   <SiteBranding>

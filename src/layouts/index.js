@@ -36,9 +36,9 @@ const Layout = ({ children }) => (
           >
             <html lang="en" />
           </SEO>
-          <Header  />
+          <Header />
 
-          {children}
+          <main>{children}</main>
         </>
       </ThemeProvider>
     )}

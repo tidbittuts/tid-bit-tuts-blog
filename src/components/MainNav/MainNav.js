@@ -14,6 +14,12 @@ const Nav = styled.nav`
   li {
     margin: 0;
     padding: 0;
+
+    &:last-of-type {
+      a {
+        margin-right: 0;
+      }
+    }
   }
 
   a {

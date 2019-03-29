@@ -12,9 +12,22 @@ elkGlenTheme.overrideThemeStyles = ({ rhythm }, options, styles) => ({
     textShadow: 'none',
     backgroundImage: 'none',
   },
+  img: {
+    marginBottom: '0',
+  },
   'h2,h3': {
     marginBottom: rhythm(1 / 2),
-    marginTop: rhythm(2),
+    marginTop: rhythm(1.5),
+  },
+  main: {
+    maxWidth: '48rem',
+    margin: '0 auto',
+    padding: '0 0.625rem',
+  },
+  '@media only screen and (min-width:47.5rem)': {
+    main: {
+      padding: '0 1.25rem',
+    },
   },
 })
 
