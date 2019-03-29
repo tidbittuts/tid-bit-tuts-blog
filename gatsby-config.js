@@ -1,62 +1,83 @@
 module.exports = {
   siteMetadata: {
-    title: `TidBitTuts`
+    title: `Gatsby MDX Starter`,
+    description: `Site description`,
+    author: `@moxbiggs`,
   },
   plugins: [
-    // Specify Filesystem Source
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `pages`,
-        path: `${__dirname}/src/`
-      }
+        name: `images`,
+        path: `${__dirname}/src/images/`,
+      },
     },
-    // Markdown Parsing
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        plugins: [
+        name: `utils`,
+        path: `${__dirname}/src/utils/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blog`,
+        path: `${__dirname}/content/`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
+    {
+      resolve: `gatsby-mdx`,
+      options: {
+        extensions: ['.mdx', '.md'],
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
               maxWidth: 590,
-              // Remove the default behavior of adding a link to each
-              // image.
-              linkImagesToOriginal: false,
-              // Analyze images' pixel density to make decisions about
-              // target image size. This is what GitHub is doing when
-              // embedding images in tickets. This is a useful setting
-              // for documentation pages with a lot of screenshots.
-              // It can have unintended side effects on high pixel
-              // density artworks.
-              //
-              // Example: A screenshot made on a retina screen with a
-              // resolution of 144 (e.g. Macbook) and a width of 100px,
-              // will be rendered at 50px.
-              //
-              // Defaults to false.
-              sizeByPixelDensity: true
-            }
-          }
-        ]
-      }
+            },
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+          },
+
+          {
+            resolve: `gatsby-remark-smartypants`,
+          },
+        ],
+      },
     },
-    // Setup Google Fonts
-    {
-      resolve: `gatsby-plugin-google-fonts`,
-      options: {
-        fonts: [
-          `limelight`,
-          `source sans pro\:300,400,400i,700` // you can also specify font weights and styles
-        ]
-      }
-    },
-    `gatsby-plugin-react-helmet`,
+    `gatsby-transformer-remark`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-sass`,
-    `gatsby-plugin-catch-links`
-  ]
-};
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
+        start_url: `/`,
+        background_color: `#663399`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.app/offline
+    // 'gatsby-plugin-offline',
+  ],
+}
