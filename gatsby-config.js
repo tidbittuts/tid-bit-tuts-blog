@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby MDX Starter`,
-    description: `Site description`,
+    title: `TidBit Tuts`,
+    description: `A blog about coding.`,
     author: `@moxbiggs`,
   },
   plugins: [

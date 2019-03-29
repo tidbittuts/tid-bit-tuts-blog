@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import { ThemeProvider } from 'styled-components'
 import theme from '../theme/theme'
+
+import SEO from '../components/Seo/Seo'
+import Header from '../components/Header/Header'
 
 // Replace with Typography
 // import '../styles/styles.scss'
@@ -23,7 +25,7 @@ const Layout = ({ children }) => (
     render={data => (
       <ThemeProvider theme={theme}>
         <>
-          <Helmet
+          <SEO
             title={data.site.siteMetadata.title}
             meta={[
               {
@@ -33,7 +35,8 @@ const Layout = ({ children }) => (
             ]}
           >
             <html lang="en" />
-          </Helmet>
+          </SEO>
+          <Header  />
 
           {children}
         </>

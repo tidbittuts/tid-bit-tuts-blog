@@ -1,9 +1,9 @@
 {
   "workbench.colorCustomizations": {
-    "titleBar.activeForeground": "#000",
-    "titleBar.inactiveForeground": "#000",
-    "titleBar.activeBackground": "#60d5facc",
-    "titleBar.inactiveBackground": "#60d5facc"
+    "titleBar.activeForeground": "#333",
+    "titleBar.inactiveForeground": "#333",
+    "titleBar.activeBackground": "#529106",
+    "titleBar.inactiveBackground": "#529106"
   },
   "files.associations": {
     "*.md": "mdx"

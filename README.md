@@ -1,5 +1,6 @@
-# Gatsby Starter Theme with MDX
-- uses the default Gatsby Starter Theme (version 2.1.20)
+# TidBit Tuts Gatbsy MDX Blog
+## Based ont he Gatsby Starter Theme with added MDX configuration
+- [uses the default Gatsby Starter Theme (Gatsby version 2.3.3)](https://www.gatsbyjs.org/starters/gatsbyjs/gatsby-starter-default/)
 - includes:
   - built in MDX options
   - built in Prettier and ESLint configurations (ESLint uses airbnb)

@@ -5,19 +5,19 @@
  */
 
 import Typography from 'typography'
+import elkGlenTheme from 'typography-theme-elk-glen'
 
-const typography = new Typography({
-  baseFontSize: '18px',
-  baseLineHeight: 1.666,
-  headerFontFamily: [
-    'Avenir Next',
-    'Helvetica Neue',
-    'Segoe UI',
-    'Helvetica',
-    'Arial',
-    'sans-serif',
-  ],
-  bodyFontFamily: ['Georgia', 'serif'],
+elkGlenTheme.overrideThemeStyles = ({ rhythm }, options, styles) => ({
+  a: {
+    textShadow: 'none',
+    backgroundImage: 'none',
+  },
+  'h2,h3': {
+    marginBottom: rhythm(1 / 2),
+    marginTop: rhythm(2),
+  },
 })
+
+const typography = new Typography(elkGlenTheme)
 
 export default typography
