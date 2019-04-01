@@ -127,12 +127,18 @@ exports.createPages = ({ actions, graphql }) => {
         }
 
         // Create blog posts pages, tags pages, category.
-        const posts = result.data.allMdx.edges
+        const allPosts = result.data.allMdx.edges
+
+        const allowedPosts = allPosts.filter(
+          post =>
+            process.env.NODE_ENV === 'development' || post.node.fields.published
+        )
+
         const { createPage } = actions
 
-        createBlogPosts(createPage, posts)
-        createBlogTags(createPage, posts)
-        createBlogCategories(createPage, posts)
+        createBlogPosts(createPage, allowedPosts)
+        createBlogTags(createPage, allowedPosts)
+        createBlogCategories(createPage, allowedPosts)
       })
     )
   })

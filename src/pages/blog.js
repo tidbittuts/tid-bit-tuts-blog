@@ -74,7 +74,11 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(
+      filter: { fields: { published: { ne: false } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 1000
+    ) {
       edges {
         node {
           excerpt
@@ -82,6 +86,7 @@ export const pageQuery = graphql`
             title
             date(formatString: "MMMM DD, YYYY")
             postUrl
+            published
           }
         }
       }
