@@ -23,7 +23,7 @@ const BlogExcerptWrapper = styled.article`
   }
 `
 
-const BlogPage = ({ data }) => {
+const BlogPage = ({ data, pageContext }) => {
   const siteTitle = data.site.siteMetadata.title
   const { edges: posts } = data.allMdx
 
@@ -67,15 +67,15 @@ const BlogPage = ({ data }) => {
   )
 }
 
-export const pageQuery = graphql`
-  query blogPage {
+export const BlogListing = graphql`
+  query BlogListing($draftBlacklist: [Boolean!]!) {
     site {
       siteMetadata {
         title
       }
     }
     allMdx(
-      filter: { fields: { published: { ne: false } } }
+      filter: { fields: { published: { nin: $draftBlacklist } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 1000
     ) {

@@ -8,6 +8,16 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const _ = require('lodash')
 
+const createBlogPage = createPage => {
+  createPage({
+    path: `/blog/`,
+    component: path.resolve('src/templates/blog-page-template.js'),
+    context: {
+      draftBlacklist: process.env.NODE_ENV === `production` ? [true] : [],
+    },
+  })
+}
+
 const createBlogPosts = (createPage, posts) => {
   // Create Previous & Next for posts
   posts.forEach((post, index) => {
@@ -139,6 +149,7 @@ exports.createPages = ({ actions, graphql }) => {
         createBlogPosts(createPage, allowedPosts)
         createBlogTags(createPage, allowedPosts)
         createBlogCategories(createPage, allowedPosts)
+        createBlogPage(createPage)
       })
     )
   })
