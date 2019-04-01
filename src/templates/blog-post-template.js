@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import styled from 'styled-components'
 
@@ -56,8 +57,10 @@ const BlogPostTemplate = ({ data, pageContext }) => {
             <small>{post.fields.date}</small>
             <small>{author}</small>
             <small>{post.fields.tags}</small>
+            <small>{post.fields.categories}</small>
           </div>
         </header>
+        <Img fluid={post.frontmatter.banner.childImageSharp.fluid} />
         <div className="entry-content">
           <MDXRenderer>{post.code.body}</MDXRenderer>
         </div>
@@ -87,7 +90,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
 }
 
 export const pageQuery = graphql`
-  query blogPostQuery($id: String) {
+  query blogPostQuery($id: String!) {
     site {
       siteMetadata {
         title
@@ -101,7 +104,17 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         tags
+        categories
         postUrl
+      }
+      frontmatter {
+        banner {
+          childImageSharp {
+            fluid(maxWidth: 900) {
+              ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            }
+          }
+        }
       }
       code {
         body

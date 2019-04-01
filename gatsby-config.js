@@ -28,6 +28,7 @@ module.exports = {
       options: {
         name: `blog`,
         path: `${__dirname}/content/`,
+        ignore: process.env.NODE_ENV === `production` && [`**/drafts/*`], // ignores drafts folder in production
       },
     },
     {
@@ -80,7 +81,9 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 590,
+              backgroundColor: '#fafafa',
+              maxWidth: 1035,
+              sizeByPixelDensity: true,
             },
           },
           {

@@ -18,7 +18,8 @@ const CategoryPage = ({ pageContext, data }) => {
       <h1>{tagHeader}</h1>
       <ul>
         {edges.map(({ node }) => {
-          const { id, title, postUrl } = node.fields
+          const { id } = node
+          const { title, postUrl } = node.fields
           return (
             <li key={id}>
               <Link to={postUrl}>{title}</Link>
@@ -59,14 +60,14 @@ export const pageQuery = graphql`
   query($category: String) {
     allMdx(
       limit: 2000
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { fields: [fields___date], order: DESC }
       filter: { fields: { categories: { in: [$category] } } }
     ) {
       totalCount
       edges {
         node {
+          id
           fields {
-            id
             categories
             title
             postUrl

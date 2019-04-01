@@ -87,26 +87,30 @@ exports.createPages = ({ actions, graphql }) => {
         `
           {
             allMdx(
-              sort: { fields: [frontmatter___date], order: DESC }
+              sort: { fields: [fields___date], order: DESC }
               limit: 1000
             ) {
               edges {
                 node {
                   id
                   fields {
-                    id
-                    filePath
-                    postUrl
-                    published
-                    date
-                    title
                     categories
-                    tags
-                    keywords
+                    date
                     description
+                    filePath
+                    keywords
+                    postUrl
+                    title
+                    tags
+                    banner {
+                      id
+                    }
                   }
                   frontmatter {
                     slug
+                    banner {
+                      id
+                    }
                   }
                   code {
                     scope
@@ -148,39 +152,9 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     const pathToPost = createFilePath({ node, getNode, basePath: `blog-posts` })
 
     createNodeField({
-      name: `id`,
+      name: `banner`,
       node,
-      value: node.id,
-    })
-
-    createNodeField({
-      name: `filePath`,
-      node,
-      value: pathToPost,
-    })
-
-    createNodeField({
-      name: `postUrl`,
-      node,
-      value: `/blog${node.frontmatter.slug}`,
-    })
-
-    createNodeField({
-      name: `published`,
-      node,
-      value: node.frontmatter.published,
-    })
-
-    createNodeField({
-      name: `date`,
-      node,
-      value: node.frontmatter.date ? node.frontmatter.date.split(' ')[0] : '',
-    })
-
-    createNodeField({
-      name: `title`,
-      node,
-      value: node.frontmatter.title || '',
+      value: node.frontmatter.banner || '',
     })
 
     createNodeField({
@@ -190,9 +164,21 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     })
 
     createNodeField({
-      name: `tags`,
+      name: `date`,
       node,
-      value: node.frontmatter.tags || [],
+      value: node.frontmatter.date ? node.frontmatter.date.split(' ')[0] : '',
+    })
+
+    createNodeField({
+      name: `description`,
+      node,
+      value: node.frontmatter.description || '',
+    })
+
+    createNodeField({
+      name: `filePath`,
+      node,
+      value: pathToPost,
     })
 
     createNodeField({
@@ -202,9 +188,21 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     })
 
     createNodeField({
-      name: `description`,
+      name: `postUrl`,
       node,
-      value: node.frontmatter.description || '',
+      value: `/blog${node.frontmatter.slug}`,
+    })
+
+    createNodeField({
+      name: `title`,
+      node,
+      value: node.frontmatter.title || '',
+    })
+
+    createNodeField({
+      name: `tags`,
+      node,
+      value: node.frontmatter.tags || [],
     })
   }
 }

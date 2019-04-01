@@ -74,14 +74,14 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [fields___date], order: DESC }) {
       edges {
         node {
           excerpt
           fields {
-            title
             date(formatString: "MMMM DD, YYYY")
             postUrl
+            title
           }
         }
       }
