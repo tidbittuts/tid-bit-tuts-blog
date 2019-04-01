@@ -6,6 +6,9 @@ import theme from '../theme/theme'
 
 import SEO from '../components/Seo/Seo'
 import Header from '../components/Header/Header'
+import Footer from '../components/Footer/Footer'
+
+require('prismjs/plugins/line-numbers/prism-line-numbers.css')
 
 // Replace with Typography
 // import '../styles/styles.scss'
@@ -39,6 +42,8 @@ const Layout = ({ children }) => (
           <Header />
 
           <main>{children}</main>
+
+          <Footer />
         </>
       </ThemeProvider>
     )}

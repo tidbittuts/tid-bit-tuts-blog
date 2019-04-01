@@ -13,3 +13,7 @@
  *
  * See: https://www.gatsbyjs.org/blog/2019-01-31-using-react-context-api-with-gatsby/#adding-styles
  */
+
+// require('prismjs/themes/prism-tomorrow.css')
+require('prismjs/themes/prism-okaidia.css')
+require('./src/styles/global.css')

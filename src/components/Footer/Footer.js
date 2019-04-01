@@ -4,9 +4,11 @@ import styled from 'styled-components'
 import { media } from '../../utils/style.utils'
 
 const FooterWrapper = styled.footer`
+  background: #333333;
+  padding: 20px;
+  color: #fff;
 `
-const FooterContainer = styled.footer`
-`
+const FooterContainer = styled.footer``
 
 const Footer = data => (
   <FooterWrapper>

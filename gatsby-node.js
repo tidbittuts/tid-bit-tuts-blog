@@ -119,7 +119,6 @@ exports.createPages = ({ actions, graphql }) => {
       ).then(result => {
         // Handle errors
         if (result.errors) {
-          console.log(result.errors)
           reject(result.errors)
         }
         // Handle no posts
