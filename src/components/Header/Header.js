@@ -3,24 +3,23 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { media } from '../../utils/style.utils'
 
-import MainNav from '../MainNav/MainNav'
 import Logo from '../Logo/Logo'
 
 const HeaderWrapper = styled.header`
   background: #529106;
   padding: 20px;
+  grid-area: header;
 `
 const HeaderContainer = styled.div`
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
 `
 
 const Header = () => (
   <HeaderWrapper>
     <HeaderContainer>
       <Logo />
-      <MainNav />
     </HeaderContainer>
   </HeaderWrapper>
 )

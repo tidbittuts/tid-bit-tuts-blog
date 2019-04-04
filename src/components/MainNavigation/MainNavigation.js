@@ -4,22 +4,18 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 const Nav = styled.nav`
+  background: #333;
+
   ul {
     margin: 0;
     padding: 0;
-    display: flex;
-    list-style-type: none;
+    grid-area: nav;
+    margin-left: 0.5rem;
   }
 
   li {
     margin: 0;
     padding: 0;
-
-    &:last-of-type {
-      a {
-        margin-right: 0;
-      }
-    }
   }
 
   a {
@@ -34,7 +30,7 @@ const Nav = styled.nav`
   }
 `
 
-const MainNav = () => (
+const MainNavigation = () => (
   <Nav>
     <ul>
       <li>
@@ -53,4 +49,4 @@ const MainNav = () => (
   </Nav>
 )
 
-export default MainNav
+export default MainNavigation

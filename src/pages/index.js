@@ -1,35 +1,91 @@
 import React from 'react'
+import { Link, graphql } from 'gatsby'
+import styled from 'styled-components'
 
 import Layout from '../layouts/index'
-import Image from '../components/Image/Image'
 import SEO from '../components/Seo/Seo'
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <div
-      style={{
-        maxWidth: '900px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: '10%',
-        textAlign: 'center',
-      }}
-    >
-      <h1>Index Page</h1>
-      <p>Start coding!</p>
-      <div
-        style={{
-          maxWidth: '300px',
-          marginBottom: '1.45rem',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-        }}
-      >
-        <Image />
-      </div>
-    </div>
-  </Layout>
-)
+const AllTagsCatsNav = styled.nav`
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
 
+  li {
+    padding: 0.5rem;
+  }
+`
+const BlogExcerptWrapper = styled.article`
+  h2 a {
+    color: ${props => props.theme.color_brand_1};
+  }
+`
+
+const IndexPage = ({ data }) => {
+  const siteTitle = data.site.siteMetadata.title
+  const { edges: posts } = data.allMdx
+
+  return (
+    <Layout location={data.location} title={siteTitle}>
+      <SEO
+        title="All posts"
+        keywords={[`blog`, `gatsby`, `javascript`, `react`]}
+      />
+
+      <AllTagsCatsNav>
+        <ul>
+          <li>
+            <Link to="/tags">Tags</Link>
+          </li>
+          <li>
+            <Link to="/categories">Categories</Link>
+          </li>
+        </ul>
+      </AllTagsCatsNav>
+
+      {posts.map(({ node }) => {
+        const { title } = node.fields
+        return (
+          <BlogExcerptWrapper key={node.id}>
+            <header>
+              <h2>
+                <Link to={node.fields.postUrl}>{title}</Link>
+              </h2>
+            </header>
+            <div className="entry-meta">
+              <small>{node.fields.date}</small>
+            </div>
+            <div className="entry-content">
+              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+            </div>
+          </BlogExcerptWrapper>
+        )
+      })}
+    </Layout>
+  )
+}
+
+export const IndexPageQuery = graphql`
+  query IndexPageQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    allMdx(sort: { fields: [fields___date], order: DESC }) {
+      edges {
+        node {
+          excerpt
+          fields {
+            date(formatString: "MMMM DD, YYYY")
+            postUrl
+            title
+          }
+        }
+      }
+    }
+  }
+`
 export default IndexPage

@@ -7,6 +7,7 @@ const FooterWrapper = styled.footer`
   background: #333333;
   padding: 20px;
   color: #fff;
+  grid-area: footer;
 `
 const FooterContainer = styled.footer``
 
