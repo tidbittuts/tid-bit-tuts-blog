@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
-import styled, { ThemeProvider } from 'styled-components'
-// import styled from 'styled-components'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
+import { ThemeProvider } from 'emotion-theming'
 import theme from '../theme/theme'
 
 import SEO from '../components/Seo/Seo'

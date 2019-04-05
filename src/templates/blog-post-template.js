@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import Layout from '../layouts/index'
 import SEO from '../components/Seo/Seo'

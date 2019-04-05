@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -9,8 +9,8 @@ import {
   EmailIcon,
   RedditShareButton,
   RedditIcon,
-} from 'react-share';
-import styled from 'styled-components';
+} from 'react-share'
+import styled from '@emotion/styled'
 
 const Container = styled.div`
   margin: 1rem 0 5rem;
@@ -20,30 +20,32 @@ const Container = styled.div`
     margin: 0 0.5rem;
     cursor: pointer;
   }
-`;
+`
 
 class Share extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       url: null,
-    };
+    }
   }
+
   componentDidMount() {
     this.setState({
       url: window.location.href,
-    });
+    })
   }
+
   render() {
-    const { post } = this.props;
-    const { url } = this.state;
+    const { post } = this.props
+    const { url } = this.state
     return (
       <Container>
         <p
-          css={`
+          css="
             font-size: 1.4rem;
             color: rgb(0, 0, 0);
-          `}
+          "
         >
           Share if you liked it:
         </p>
@@ -79,7 +81,7 @@ class Share extends Component {
           </>
         )}
       </Container>
-    );
+    )
   }
 }
 
@@ -89,6 +91,6 @@ Share.propTypes = {
     excerpt: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
   }).isRequired,
-};
+}
 
-export default Share;
+export default Share

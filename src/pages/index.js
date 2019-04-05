@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import Layout from '../layouts/index'
 import SEO from '../components/Seo/Seo'
@@ -19,7 +19,7 @@ const AllTagsCatsNav = styled.nav`
 `
 const BlogExcerptWrapper = styled.article`
   h2 a {
-    color: ${props => props.theme.color_brand_1};
+    color: ${props => props.theme.colors.color_brand_1};
   }
 `
 
