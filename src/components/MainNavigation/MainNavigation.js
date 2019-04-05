@@ -5,6 +5,14 @@ import { Link } from 'gatsby'
 
 const Nav = styled.nav`
   background: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  @media (max-width: 768px) {
+    margin: 0;
+  }
 
   ul {
     margin: 0;

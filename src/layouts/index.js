@@ -29,6 +29,23 @@ const PageWrapper = styled.div`
   grid-gap: 0;
 
   height: 100vh;
+
+  @media (max-width: 768px) {
+    grid-template-areas:
+      'header'
+      'nav'
+      'content'
+      'side'
+      'footer';
+
+    grid-template-columns: 1fr;
+    grid-template-rows:
+      auto /* Header */
+      minmax(75px, auto) /* Nav */
+      1fr /* Content */
+      minmax(75px, auto) /* Sidebar */
+      auto; /* Footer */
+  }
 `
 const Main = styled.main`
   background: #99badd;

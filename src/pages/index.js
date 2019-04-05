@@ -34,6 +34,8 @@ const IndexPage = ({ data }) => {
         keywords={[`blog`, `gatsby`, `javascript`, `react`]}
       />
 
+      <h1>Index Page</h1>
+
       <AllTagsCatsNav>
         <ul>
           <li>
