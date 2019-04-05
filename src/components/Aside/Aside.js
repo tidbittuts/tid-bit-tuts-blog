@@ -7,10 +7,6 @@ const AsideDiv = styled.aside`
   grid-area: side;
   background: pink;
   padding: 20px;
-
-  @media (max-width: 768px) {
-    margin: 0;
-  }
 `
 const AsideContainer = styled.div`
   /* display: flex;
