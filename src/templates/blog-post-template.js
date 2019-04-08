@@ -58,9 +58,10 @@ const BlogPostTemplate = ({ data, pageContext }) => {
             <small>{author}</small>
             <small>{post.fields.tags}</small>
             <small>{post.fields.categories}</small>
+            {/* <small>{post.frontmatter.banner.id}</small> */}
           </div>
         </header>
-        <Img fluid={post.frontmatter.banner.childImageSharp.fluid} />
+        {/* <Img fluid={post.frontmatter.banner.childImageSharp.fluid} /> */}
         <div className="entry-content">
           <MDXRenderer>{post.code.body}</MDXRenderer>
         </div>

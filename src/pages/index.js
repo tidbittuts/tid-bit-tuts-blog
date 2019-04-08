@@ -38,10 +38,10 @@ const IndexPage = ({ data }) => {
 
       <AllTagsCatsNav>
         <ul>
-          <li>
+          <li key="tags-1234">
             <Link to="/tags">Tags</Link>
           </li>
-          <li>
+          <li key="cats-1234">
             <Link to="/categories">Categories</Link>
           </li>
         </ul>
@@ -79,6 +79,7 @@ export const IndexPageQuery = graphql`
     allMdx(sort: { fields: [fields___date], order: DESC }) {
       edges {
         node {
+          id
           excerpt
           fields {
             date(formatString: "MMMM DD, YYYY")

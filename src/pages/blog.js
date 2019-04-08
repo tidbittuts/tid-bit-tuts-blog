@@ -38,10 +38,10 @@ const BlogPage = ({ data }) => {
 
       <AllTagsCatsNav>
         <ul>
-          <li>
+          <li key="tags-11">
             <Link to="/tags">Tags</Link>
           </li>
-          <li>
+          <li key="cats-11">
             <Link to="/categories">Categories</Link>
           </li>
         </ul>

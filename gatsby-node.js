@@ -102,9 +102,6 @@ exports.createPages = ({ actions, graphql }) => {
                     postUrl
                     title
                     tags
-                    banner {
-                      id
-                    }
                   }
                   frontmatter {
                     slug
