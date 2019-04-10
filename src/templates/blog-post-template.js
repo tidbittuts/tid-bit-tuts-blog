@@ -58,6 +58,14 @@ const BlogPostTemplate = ({ data, pageContext }) => {
             <small>{author}</small>
             <small>{post.fields.tags}</small>
             <small>{post.fields.categories}</small>
+            <div>
+              <small>Fields: </small>
+              <small>{post.fields.banner.id}</small>
+            </div>
+            <div>
+              <small>Frontmatter: </small>
+              {/* <small>{post.frontmatter.banner}</small> */}
+            </div>
           </div>
         </header>
         <Img fluid={post.frontmatter.banner.childImageSharp.fluid} />
@@ -106,12 +114,15 @@ export const pageQuery = graphql`
         tags
         categories
         postUrl
+        banner {
+          id
+        }
       }
       frontmatter {
         banner {
           childImageSharp {
-            fluid(maxWidth: 900) {
-              ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            fluid(maxWidth: 900, maxHeight: 600) {
+              ...GatsbyImageSharpFluid
             }
           }
         }
