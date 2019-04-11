@@ -76,7 +76,7 @@ export const IndexPageQuery = graphql`
         title
       }
     }
-    allMdx(sort: { fields: [fields___date], order: DESC }) {
+    allMdx(sort: { fields: [fields___date], order: DESC }, limit: 5) {
       edges {
         node {
           excerpt

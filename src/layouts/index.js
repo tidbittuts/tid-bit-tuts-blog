@@ -65,27 +65,25 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <ThemeProvider theme={theme}>
-        <>
-          <SEO
-            title={data.site.siteMetadata.title}
-            meta={[
-              {
-                name: 'description',
-                content: `${data.site.siteMetadata.description}`,
-              },
-            ]}
-          >
-            <html lang="en" />
-          </SEO>
-          <PageWrapper>
-            <Header />
-            <Main>
-              <MainContent>{children}</MainContent>
-            </Main>
-            <Aside />
-            {/* <Footer /> */}
-          </PageWrapper>
-        </>
+        <SEO
+          title={data.site.siteMetadata.title}
+          meta={[
+            {
+              name: 'description',
+              content: `${data.site.siteMetadata.description}`,
+            },
+          ]}
+        >
+          <html lang="en" />
+        </SEO>
+        <PageWrapper>
+          <Header />
+          <Main>
+            <MainContent>{children}</MainContent>
+          </Main>
+          <Aside />
+          {/* <Footer /> */}
+        </PageWrapper>
       </ThemeProvider>
     )}
   />
