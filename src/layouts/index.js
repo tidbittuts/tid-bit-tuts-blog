@@ -35,10 +35,7 @@ const PageWrapper = styled.div`
     auto; /* Footer */
 
   @media (min-width: 768px) {
-    grid-template-areas:
-      'header content side'
-      'footer footer footer';
-
+    grid-template-areas: 'header content side';
     grid-template-columns: 200px 1fr 200px;
     grid-template-rows: auto 1fr auto;
     grid-gap: 0;
@@ -86,7 +83,7 @@ const Layout = ({ children }) => (
               <MainContent>{children}</MainContent>
             </Main>
             <Aside />
-            <Footer />
+            {/* <Footer /> */}
           </PageWrapper>
         </>
       </ThemeProvider>

@@ -154,25 +154,25 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `banner`,
       node,
-      value: node.frontmatter.banner || '',
+      value: node.frontmatter.banner || null,
     })
 
     createNodeField({
       name: `categories`,
       node,
-      value: node.frontmatter.categories || [],
+      value: node.frontmatter.categories || null,
     })
 
     createNodeField({
       name: `date`,
       node,
-      value: node.frontmatter.date ? node.frontmatter.date.split(' ')[0] : '',
+      value: node.frontmatter.date ? node.frontmatter.date.split(' ')[0] : null,
     })
 
     createNodeField({
       name: `description`,
       node,
-      value: node.frontmatter.description || '',
+      value: node.frontmatter.description || null,
     })
 
     createNodeField({
@@ -184,7 +184,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `keywords`,
       node,
-      value: node.frontmatter.keywords || [],
+      value: node.frontmatter.keywords || null,
     })
 
     createNodeField({
@@ -196,13 +196,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `title`,
       node,
-      value: node.frontmatter.title || '',
+      value: node.frontmatter.title || null,
     })
 
     createNodeField({
       name: `tags`,
       node,
-      value: node.frontmatter.tags || [],
+      value: node.frontmatter.tags || null,
     })
   }
 }

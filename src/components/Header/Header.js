@@ -13,6 +13,9 @@ const HeaderWrapper = styled.header`
 
   @media (min-width: 768px) {
     background: #333;
+    position: fixed;
+    height: 100%;
+    width: 200px;
   }
 `
 const HeaderContainer = styled.div`

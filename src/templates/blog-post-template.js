@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
@@ -6,8 +6,10 @@ import styled from '@emotion/styled'
 
 import Layout from '../layouts/index'
 import SEO from '../components/Seo/Seo'
+import CategoriesNav from '../components/CategoriesNav/CategoriesNav'
+import TagsNav from '../components/TagsNav/TagsNav'
 
-const BlogPostArticle = styled.article`
+const PostArticle = styled.article`
   h1 {
     color: red;
   }
@@ -16,6 +18,9 @@ const BlogPostArticle = styled.article`
     margin-bottom: 1rem;
   }
 `
+
+const PostHeader = styled.header``
+const PostBody = styled.div``
 
 const PostNavigation = styled.nav`
   h2 {
@@ -41,39 +46,39 @@ const PostNavigation = styled.nav`
   }
 `
 
+// const bannerImage = banner => {
+//   if (banner !== null) {
+//     return <Img fluid={banner.childImageSharp.fluid} />
+//   }
+//   return null
+// }
+
 const BlogPostTemplate = ({ data, pageContext }) => {
   const siteTitle = data.site.siteMetadata.title
   const post = data.mdx
   const { author } = data.site.siteMetadata
   const { previous, next } = pageContext
+  const { banner, categories, date, tags, title } = post.fields
 
   return (
     <Layout location={data.location} title={siteTitle}>
-      <SEO title={post.fields.title} description={post.excerpt} />
-      <BlogPostArticle>
-        <header>
-          <h1>{post.fields.title}</h1>
+      <SEO title={title} description={post.excerpt} />
+      <PostArticle>
+        <PostHeader>
+          <h1>{title}</h1>
           <div className="entry-meta">
-            <small>{post.fields.date}</small>
-            <small>{author}</small>
-            <small>{post.fields.tags}</small>
-            <small>{post.fields.categories}</small>
-            <div>
-              <small>Fields: </small>
-              <small>{post.fields.banner.id}</small>
-            </div>
-            <div>
-              <small>Frontmatter: </small>
-              {/* <small>{post.frontmatter.banner}</small> */}
-            </div>
+            <span>{date}</span>
+            <span>{author}</span>
+            <TagsNav tags={tags} />
+            <CategoriesNav categories={categories} />
           </div>
-        </header>
-        <Img fluid={post.frontmatter.banner.childImageSharp.fluid} />
-        <div className="entry-content">
+        </PostHeader>
+        <PostBody>
+          {banner && <Img fluid={banner.childImageSharp.fluid} />}
           <MDXRenderer>{post.code.body}</MDXRenderer>
-        </div>
-        <hr />
+        </PostBody>
         <PostNavigation>
+          <hr />
           <h2>Post Navigation</h2>
           <ul>
             <li>
@@ -92,7 +97,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
             </li>
           </ul>
         </PostNavigation>
-      </BlogPostArticle>
+      </PostArticle>
     </Layout>
   )
 }
@@ -114,11 +119,6 @@ export const pageQuery = graphql`
         tags
         categories
         postUrl
-        banner {
-          id
-        }
-      }
-      frontmatter {
         banner {
           childImageSharp {
             fluid(maxWidth: 900, maxHeight: 600) {
