@@ -4,17 +4,13 @@ import styled from '@emotion/styled'
 
 import Layout from '../layouts/index'
 import SEO from '../components/Seo/Seo'
+import MostRecentPost from '../components/MostRecentPost/MostRecentPost'
 
 const AllTagsCatsNav = styled.nav`
-  ul {
-    display: flex;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-  }
+  display: flex;
 
-  li {
-    padding: 0.5rem;
+  a {
+    padding-right: 0.5rem;
   }
 `
 const BlogExcerptWrapper = styled.article`
@@ -37,15 +33,11 @@ const IndexPage = ({ data }) => {
       <h1>Index Page</h1>
 
       <AllTagsCatsNav>
-        <ul>
-          <li>
-            <Link to="/tags">Tags</Link>
-          </li>
-          <li>
-            <Link to="/categories">Categories</Link>
-          </li>
-        </ul>
+        <Link to="/tags">Tags</Link>
+        <Link to="/categories">Categories</Link>
       </AllTagsCatsNav>
+
+      <MostRecentPost posts={posts} />
 
       {posts.map(({ node }) => {
         const { title } = node.fields
@@ -79,11 +71,14 @@ export const IndexPageQuery = graphql`
     allMdx(sort: { fields: [fields___date], order: DESC }, limit: 5) {
       edges {
         node {
+          id
           excerpt
           fields {
             date(formatString: "MMMM DD, YYYY")
             postUrl
             title
+            tags
+            categories
           }
         }
       }
